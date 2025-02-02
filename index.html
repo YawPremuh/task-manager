@@ -4,18 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>Task Manager</title>
+  <title>Task Manager with Conflict Detection</title>
 </head>
 <body>
   <div id="app">
     <h1>Task Manager</h1>
+
+    <!-- Task Input Section -->
     <div id="task-input">
-      <input type="text" id="task-name" placeholder="Task Name">
-      <input type="time" id="task-time">
-      <button id="add-task">Add Task</button>
+      <input type="text" id="task-name" placeholder="Task Name" aria-label="Task Name">
+      <input type="time" id="start-time" placeholder="Start Time" aria-label="Start Time">
+      <input type="time" id="end-time" placeholder="End Time" aria-label="End Time">
+      <select id="task-day" aria-label="Select Day">
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+        <option value="Sunday">Sunday</option>
+      </select>
+      <button id="add-task" aria-label="Add Task">Add Task</button>
     </div>
-    <div id="task-list"></div>
+
+    <!-- Feedback Section -->
+    <div id="feedback"></div>
+
+    <!-- Task List Section -->
+    <div id="task-list">
+      <p id="no-tasks-message" class="hidden">No tasks added yet. Start by adding a task above!</p>
+    </div>
+
+    <!-- Generate Timetable Button -->
+    <button id="generate-timetable">Generate Timetable</button>
+
+    <!-- Timetable Section -->
+    <div id="timetable"></div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
