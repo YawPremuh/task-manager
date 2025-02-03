@@ -25,6 +25,7 @@ h1 {
 
 #task-input {
   display: flex;
+
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
@@ -37,6 +38,7 @@ h1 {
   font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 5px;
+
   width: 100%;
   box-sizing: border-box;
 }
@@ -51,6 +53,7 @@ h1 {
 #task-input button:hover {
   background: #0056b3;
 }
+
 
 #feedback {
   color: red;
@@ -73,6 +76,7 @@ h1 {
   border-radius: 5px;
 }
 
+
 .task button {
   background: #ff4d4d;
   color: white;
@@ -84,6 +88,10 @@ h1 {
 
 .task button:hover {
   background: #cc0000;
+}
+
+button {
+  cursor: pointer;
 }
 
 /* Timetable Styles */

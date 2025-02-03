@@ -16,6 +16,9 @@
       <input type="time" id="start-time" placeholder="Start Time" aria-label="Start Time">
       <input type="time" id="end-time" placeholder="End Time" aria-label="End Time">
       <select id="task-day" aria-label="Select Day">
+      <input type="text" id="task-name" placeholder="Task Name">
+      <input type="time" id="task-time">
+      <select id="task-day">
         <option value="Monday">Monday</option>
         <option value="Tuesday">Tuesday</option>
         <option value="Wednesday">Wednesday</option>
@@ -39,6 +42,15 @@
     <button id="generate-timetable">Generate Timetable</button>
 
     <!-- Timetable Section -->
+      <button id="add-task">Add Task</button>
+    </div>
+
+    <div id="task-list"></div>
+
+    <!-- Button to generate timetable -->
+    <button id="generate-timetable">Generate Timetable</button>
+
+    <!-- Container to display the timetable -->
     <div id="timetable"></div>
   </div>
 

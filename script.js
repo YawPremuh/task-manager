@@ -7,6 +7,11 @@ const addTaskBtn = document.getElementById("add-task");
 const feedbackDiv = document.getElementById("feedback");
 const taskList = document.getElementById("task-list");
 const generateTimetableBtn = document.getElementById("generate-timetable");
+const timeInput = document.getElementById("task-time");
+const dayInput = document.getElementById("task-day");
+const addTaskBtn = document.getElementById("add-task");
+const generateTimetableBtn = document.getElementById("generate-timetable");
+const taskList = document.getElementById("task-list");
 const timetableDiv = document.getElementById("timetable");
 
 // Load tasks from localStorage or initialize an empty array
@@ -38,7 +43,9 @@ function renderTasks() {
     taskDiv.setAttribute("data-index", index);
 
     taskDiv.innerHTML = `
+<<<<<<< HEAD
       <span>${task.name} (${task.day} ${task.startTime} - ${task.endTime})</span>
+      <span>${task.name} (${task.day} at ${task.time})</span>
       <button onclick="deleteTask(${index})">Delete</button>
     `;
 
@@ -129,11 +136,38 @@ function generateTimetable() {
   const groupedTasks = {};
 
   // Group tasks by day
+  const taskTime = timeInput.value;
+  const taskDay = dayInput.value;
+
+  if (taskName && taskTime && taskDay) {
+    tasks.push({ name: taskName, time: taskTime, day: taskDay });
+    saveTasks();
+    renderTasks();
+    taskInput.value = "";
+    timeInput.value = "";
+    dayInput.value = "Monday";
+  }
+}
+
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  saveTasks();
+  renderTasks();
+}
+
+function generateTimetable() {
+  // Clear previous timetable
+  timetableDiv.innerHTML = "";
+
+  // Group tasks by day
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const groupedTasks = {};
   days.forEach((day) => {
     groupedTasks[day] = tasks.filter((task) => task.day === day);
   });
 
   // Display tasks for each day
+  // Create a timetable
   days.forEach((day) => {
     const dayDiv = document.createElement("div");
     dayDiv.classList.add("day");
@@ -149,6 +183,11 @@ function generateTimetable() {
         const taskDiv = document.createElement("div");
         taskDiv.classList.add("timetable-task");
         taskDiv.textContent = `${task.startTime} - ${task.endTime}: ${task.name}`;
+      dayTasks.sort((a, b) => a.time.localeCompare(b.time)); // Sort tasks by time
+      dayTasks.forEach((task) => {
+        const taskDiv = document.createElement("div");
+        taskDiv.classList.add("timetable-task");
+        taskDiv.textContent = `${task.time} - ${task.name}`;
         dayDiv.appendChild(taskDiv);
       });
     } else {
@@ -164,4 +203,8 @@ addTaskBtn.addEventListener("click", addTask);
 generateTimetableBtn.addEventListener("click", generateTimetable);
 
 // Render tasks on page load
+window.onload = renderTasks;
+// Event listeners
+addTaskBtn.addEventListener("click", addTask);
+generateTimetableBtn.addEventListener("click", generateTimetable);
 window.onload = renderTasks;
